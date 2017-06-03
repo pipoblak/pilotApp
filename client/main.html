@@ -1,19 +1,26 @@
 <head>
-  <title>pilotApp</title>
+  <title>Pilot - Control Room</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 </head>
 
 <body>
   {{> appbar}}
+  {{> dashboard}}
 </body>
-
-<template name="hello">
-  <button>Click Me</button>
-  <p>You've pressed the button {{counter}} times.</p>
-</template>
 
 <template name="appbar">
   <div class="app-bar">
+    <img src="/assets/svg/logo.svg" class="svg-logo">
+  </div>
+</template>
 
+<template name="dashboard">
+  <div class="container">
+    <div class="machine-title">
+      <span>galaxy</span>
+    </div>
+    <div class="config-holder cpu flex-end flex-just-end">
+      <span>Intel Core I7 7700K 4.20 Ghz</span>
+    </div>
   </div>
 </template>
