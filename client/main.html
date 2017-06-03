@@ -4,8 +4,10 @@
 </head>
 
 <body>
-  {{> appbar}}
-  {{> dashboard}}
+  <script src="https://use.fontawesome.com/3d3cbe1fc9.js"></script>
+    {{> appbar}}
+    {{> dashboard}}
+    {{> footerbar}}
 </body>
 
 <template name="appbar">
@@ -13,14 +15,16 @@
     <img src="/assets/svg/logo.svg" class="svg-logo">
   </div>
 </template>
-
-<template name="dashboard">
-  <div class="container">
-    <div class="machine-title">
-      <span>galaxy</span>
+<template name="footerbar">
+  <div class="footer-bar">
+    <div class="footer-item">
+      <a class="selected"><i class="fa fa-tasks" aria-hidden="true"></i></a>
     </div>
-    <div class="config-holder cpu flex-end flex-just-end">
-      <span>Intel Core I7 7700K 4.20 Ghz</span>
+    <div class="footer-item">
+      <a><i class="fa fa-dashboard" aria-hidden="true"></i></a>
+    </div>
+    <div class="footer-item">
+      <a><i class="fa fa-keyboard-o" aria-hidden="true"></i></a>
     </div>
   </div>
 </template>

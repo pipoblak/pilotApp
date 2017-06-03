@@ -1,13 +1,24 @@
 body,html{
   margin: 0;
   padding: 0;
-  height: 100%;
 }
+$background: #24242e;
+body {
+  display: flex;
+  flex-direction: column;
+  background:$background;
+}
+@import url('https://fonts.googleapis.com/css?family=Roboto:300');
 
-@import url('https://fonts.googleapis.com/css?family=Roboto:200');
 @font-face {
   font-family: 'WildCreatures';
   src:url('/assets/fonts/WildCreaturesSample.ttf')  format('truetype');
+}
+@font-face {
+font-family: 'Bebas Neue';
+font-style: normal;
+font-weight: normal;
+src: local('Bebas Neue'), url('assets/fonts/BebasNeue.woff') format('woff');
 }
 
 
@@ -32,8 +43,13 @@ $app-bar-background: #594786;
   background: $app-bar-background;
   display: flex;
   justify-content: center;
+  position: fixed;
+  top: 0;
   @media (max-height: 768px){
-    height: 48px;
+    height: 56px;
+  }
+  @media (max-height: 568px){
+    height: 8vh;
   }
 }
 
@@ -46,54 +62,63 @@ $app-bar-background: #594786;
 }
 
 /* CONTAINER LAYOUT*/
-$container-background: #24242e;
 .container{
-  height: calc(100% - 72px);
-  background:$container-background;
+  height:calc(100% - 152px);
+  width: 100%;
+  overflow: auto;
   display: flex;
   flex-direction: column;
+  position: fixed;
+  top: 72px;
+  bottom: 80px;
   @media (max-height: 768px){
-    height:calc(100% - 48px);
+    top: 56px;
+    height:calc(100% - 136px);
+  }
+  @media (max-height: 768px){
+    top: 8vh;
+    bottom: 10vh;
+    height:calc(100% - 18vh);
   }
 }
 
-/* MACHINE-TITLE LAYOUT*/
-.machine-title{
-  margin-top: 16px;
-  margin-bottom: 16px;
-  height: 72px;
-  display: flex;
-  justify-content: flex-end;
+/* FOOTER-BAR LAYOUT*/
+.footer-bar{
   width: 100%;
-  @media (max-height: 768px){
-    height: 48px;
+  height: 80px;
+  background: #49495a;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  position: fixed;
+  bottom: 0;
+  @media (max-height: 568px){
+    height:10vh;
   }
 }
-.machine-title > span {
-  margin: auto 0;
-  margin-right: 16px;
-  color: white;
-  font-family: 'WildCreatures';
-  font-size: 1.7rem;
+.footer-item{
+  height: inherit;
+  width: 80px;
+  display: flex;
+  @media (max-height: 568px){
+    width:10vh;
+  }
+}
+.footer-item > a{
+  display: flex;
+  width: 100%;
+  text-align: center;
+}
+.footer-item > a.selected{
+  border-bottom: solid 5px orange;
 }
 
-/* CONFIG LAYOUT*/
-.config-holder{
-  width: 75%;
-  color: $container-background;
-  height: 59px;
-  display: flex;
-  @media (max-height: 768px){
-    height: 35px;
+.footer-item > a > i{
+  margin:auto;
+  font-size: 36px;
+  color: white;
+  text-align: justify;
+  @media (max-height: 568px){
+    font-size: 24px;
   }
-}
-.config-holder > span{
-  margin: auto 0;
-  font-family: 'Roboto';
-  font-size: 0.9rem;
-  margin-right:3px;
-  margin-left:3px;
-}
-.cpu{
-  background:#37ff98;
 }

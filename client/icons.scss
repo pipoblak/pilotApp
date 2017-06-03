@@ -1,0 +1,73 @@
+@charset "UTF-8";
+
+@font-face {
+  font-family: "pcicons";
+  src:url("assets/fonts/pcicons.eot");
+  src:url("assets/fonts/pcicons.eot?#iefix") format("embedded-opentype"),
+    url("assets/fonts/pcicons.woff") format("woff"),
+    url("assets/fonts/pcicons.ttf") format("truetype"),
+    url("assets/fonts/pcicons.svg#pcicons") format("svg");
+  font-weight: normal;
+  font-style: normal;
+
+}
+
+[data-icon]:before {
+  font-family: "pcicons" !important;
+  content: attr(data-icon);
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+[class^="pc-i-"]:before,
+[class*=" pc-i-"]:before {
+  font-family: "pcicons" !important;
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.pc-i-system:before {
+  content: "\61";
+}
+.pc-i-case:before {
+  content: "\62";
+}
+.pc-i-cd:before {
+  content: "\63";
+}
+.pc-i-cooler:before {
+  content: "\64";
+}
+.pc-i-cpu:before {
+  content: "\65";
+}
+.pc-i-gpu:before {
+  content: "\66";
+}
+.pc-i-hd:before {
+  content: "\67";
+}
+.pc-i-motherboard:before {
+  content: "\68";
+}
+.pc-i-power:before {
+  content: "\69";
+}
+.pc-i-ram:before {
+  content: "\6a";
+}
+.pc-i-ssd:before {
+  content: "\6b";
+}
