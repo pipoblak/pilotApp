@@ -14,9 +14,21 @@ import './main.html';
 //   },
 // });
 //
-// Template.hello.events({
-//   'click button'(event, instance) {
-//     // increment the counter when button is clicked
-//     instance.counter.set(instance.counter.get() + 1);
-//   },
-// });
+Template.footernavbar.events({
+  'click #footer-nav-item'(event, instance) {
+    event.preventDefault();
+    $(document).find(".selected").removeClass("selected");
+    $(event.target).closest("a").addClass("selected");
+    $(document).find(".page").fadeOut(function(){
+      Router.go($(event.target).closest('a').attr("href"));
+
+    });
+  },
+});
+Template.home.onRendered(function () {
+  $(document).find(".page").fadeIn();
+  $(document).find(".actions-menu-holder").hide();
+  $(document).find(".config-container").hide();
+  $(document).find(".config-container").slideDown();
+  $(document).find(".actions-menu-holder").animate({width:'toggle'},350);
+})

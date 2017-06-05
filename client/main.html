@@ -5,9 +5,6 @@
 
 <body>
   <script src="https://use.fontawesome.com/3d3cbe1fc9.js"></script>
-    {{> appbar}}
-    {{> dashboard}}
-    {{> footerbar}}
 </body>
 
 <template name="appbar">
@@ -15,16 +12,28 @@
     <img src="/assets/svg/logo.svg" class="svg-logo">
   </div>
 </template>
-<template name="footerbar">
-  <div class="footer-bar">
-    <div class="footer-item">
-      <a class="selected"><i class="fa fa-tasks" aria-hidden="true"></i></a>
+<template name="footernavbar">
+  <div class="footer-nav-bar">
+    <div class="footer-nav-item">
+      <a id="footer-nav-item" class="selected" data-id="home" href="/"><i class="fa fa-tasks" aria-hidden="true"></i></a>
     </div>
-    <div class="footer-item">
-      <a><i class="fa fa-dashboard" aria-hidden="true"></i></a>
+    <div class="footer-nav-item">
+      <a id="footer-nav-item" data-id="infos" href="/infos"><i class="fa fa-dashboard" aria-hidden="true"></i></a>
     </div>
-    <div class="footer-item">
-      <a><i class="fa fa-keyboard-o" aria-hidden="true"></i></a>
+    <div class="footer-nav-item">
+      <a id="footer-nav-item" data-id="keyboard" href="/keyboard"><i class="fa fa-keyboard-o" aria-hidden="true"></i></a>
     </div>
   </div>
+</template>
+
+<template name="page">
+  {{> appbar}}
+  <div class="page">
+    <content>
+      {{> yield "page"}}
+    </content>
+  </div>
+  {{> footernavbar}}
+</template>
+<template name="none">
 </template>
