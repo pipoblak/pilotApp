@@ -1,0 +1,152 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,100');
+@import  "lib/colors";
+
+/* COOLERS - INFO */
+.cooler-info{
+  width: 100%;
+  height: 40%;
+
+}
+
+/* TITLE */
+.temperature-title{
+  background: $deep-green;
+}
+
+.default-holder{
+  height: 30%;
+  display: flex;
+  flex-direction: column;
+}
+
+/*TEMPERATURES*/
+.temperatures-holder{
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns:50%;
+}
+.temperature{
+  grid-column-start: 1;
+  width: 100%;
+  height:6.5vw;
+  align-self: center;
+  margin-left: 16px;
+  display: flex;
+  flex-direction: row;
+  max-height: 54px;
+}
+
+.temperature-icon{
+  background: $background !important;
+  width: 6.5vw;
+  height: 6.5vw;
+  max-width: 54px;
+  max-height: 54px;
+  display: flex;
+  color: white;
+}
+.temperature-icon>i{
+  margin: auto;
+  line-height: 50%;
+}
+.temperature-icon.cpu{
+  border:solid 1px $light-green;
+}
+.temperature-icon.gpu{
+  border:solid 1px $pink;
+}
+.temperature-icon.motherboard{
+  border:solid 1px $light-blue;
+}
+
+.temperature-progress-holder{
+  width: 85%;
+  background: $background !important;
+  position: relative;
+  height: 100%;
+  display: flex;
+}
+.temperature-progress-holder:before {
+  content:"";
+  position: absolute;
+  top: -1px;
+  right: -2vw;
+  bottom: 0;
+  width: 7vw;
+  -webkit-transform: skew(-20deg);
+  -moz-transform: skew(-20deg);
+  -ms-transform: skew(-20deg);
+  transform: skew(-20deg);
+  border: solid 1px;
+  height: 100%;
+  border-left: none;
+}
+.temperature-progress-holder:after{
+  color: #24242e;
+  content: "12 °";
+  font-size: 0.7rem;
+  font-family: "Bebas";
+  position: relative;
+  margin: auto;
+  margin-right: -2%;
+  @media (min-height: 768px){
+    font-size: 100%;
+  }
+
+}
+
+.temperature-progress-holder.cpu{
+  border: solid 1px $light-green;
+  border-right: none;
+  border-left: none;
+}
+.temperature-progress-holder.cpu:before{
+  border-color:$light-green;
+  background: $light-green;
+}
+
+.temperature-progress-holder.gpu{
+  border: solid 1px $pink;
+  border-right: none;
+  border-left: none;
+}
+.temperature-progress-holder.gpu:before{
+  border-color:$pink;
+  background: $pink;
+}
+
+.temperature-progress-holder.motherboard{
+  border: solid 1px $light-blue;
+  border-right: none;
+  border-left: none;
+}
+.temperature-progress-holder.motherboard:before{
+  border-color:$light-blue;
+  background: $light-blue;
+}
+.progress{
+  width: 75%;
+  height: 80%;
+  background: white;
+  margin: auto 0;
+  margin-left: 1.4%;
+  position: relative;
+}
+.progress>div{
+  width: 100%;
+}
+.progress>div:before{
+  content: "";
+  position: absolute;
+  right: -3vw;
+  bottom: 0;
+  width: 4vw;
+  -webkit-transform: skew(-20deg);
+  -moz-transform: skew(-20deg);
+  -ms-transform: skew(-20deg);
+  transform: skew(-20deg);
+  height: 100%;
+  border-left: none;
+  background: white;
+}

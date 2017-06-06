@@ -45,9 +45,17 @@ Template.footernavbar.events({
     });
   },
 });
+Template.footernavbar.onRendered(function() {
+  var path = window.location.pathname;
+  var item = $(document).find("[href='"+path+"']");
+  var selected = $(document).find(".selected");
+  selected.removeClass("selected");
+  item.addClass("selected");
+});
 Template.page.onRendered(function(){
   var page=$(document).find("body");
-
+  page.hide();
+  page.fadeIn();
 });
 Template.home.onRendered(function () {
   if(firstopen){
@@ -72,4 +80,9 @@ Template.home.onRendered(function () {
   else{
     $(document).find(".container").addClass("animated fadeIn")
   }
+})
+
+Template.infos.onRendered(function () {
+  var container =$(".container");
+  container.addClass("animated fadeIn")
 })
