@@ -14,21 +14,57 @@ import './main.html';
 //   },
 // });
 //
+var firstopen=true;
 Template.footernavbar.events({
   'click #footer-nav-item'(event, instance) {
     event.preventDefault();
-    $(document).find(".selected").removeClass("selected");
-    $(event.target).closest("a").addClass("selected");
-    $(document).find(".page").fadeOut(function(){
-      Router.go($(event.target).closest('a').attr("href"));
+    var target = $(event.target);
+    var selected = $(document).find(".selected");
+    selected.removeClass("selected");
 
+    if(target.prop("tagName") =="I"){
+      target = target.parents("a").closest("a");
+    }
+    target.closest("a").addClass("selected");
+    var container =$(".container");
+    var slideDirection;
+    if(target.attr("data-order") > selected.attr("data-order")){
+      slideDirection="Left";
+    }
+    else {
+      slideDirection="Right";
+    }
+    container.addClass("animated slideOut" + slideDirection);
+    container.one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
+      Router.go($(event.target).closest('a').attr("href"));
     });
   },
 });
+Template.page.onRendered(function(){
+  var page=$(document).find("body");
+
+});
 Template.home.onRendered(function () {
-  $(document).find(".page").fadeIn();
-  $(document).find(".actions-menu-holder").hide();
-  $(document).find(".config-container").hide();
-  $(document).find(".config-container").slideDown();
-  $(document).find(".actions-menu-holder").animate({width:'toggle'},350);
+  if(firstopen){
+    var configContainer=$(document).find(".config-container");
+    var machineTitle= $(document).find(".machine-title span");
+    var actionsMenu= $(document).find(".actions-holder")
+    var actionTitle= $(document).find(".title-holder")
+    machineTitle.hide();
+    actionsMenu.hide();
+    actionTitle.hide();
+    configContainer.addClass('animated bounceInDown');
+    actionTitle.addClass('animated slideInUp');
+    actionTitle.show()
+    configContainer.one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
+      machineTitle.addClass('animated bounceIn');
+      actionsMenu.addClass('animated slideInLeft');
+      machineTitle.show();
+      actionsMenu.show();
+    });
+    firstopen=false;
+  }
+  else{
+    $(document).find(".container").addClass("animated fadeIn")
+  }
 })

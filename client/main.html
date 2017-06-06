@@ -1,6 +1,7 @@
 <head>
   <title>Pilot - Control Room</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
 </head>
 
 <body>
@@ -14,21 +15,21 @@
 </template>
 <template name="footernavbar">
   <div class="footer-nav-bar">
-    <div class="footer-nav-item">
-      <a id="footer-nav-item" class="selected" data-id="home" href="/"><i class="fa fa-tasks" aria-hidden="true"></i></a>
+    <div class="footer-nav-item" id="footer-nav-item">
+      <a class="selected" data-id="home" data-order="1" href="/"><i class="fa fa-tasks" aria-hidden="true"></i></a>
     </div>
-    <div class="footer-nav-item">
-      <a id="footer-nav-item" data-id="infos" href="/infos"><i class="fa fa-dashboard" aria-hidden="true"></i></a>
+    <div class="footer-nav-item" id="footer-nav-item">
+      <a data-id="infos" href="/infos" data-order="2"><i class="fa fa-dashboard" aria-hidden="true"></i></a>
     </div>
-    <div class="footer-nav-item">
-      <a id="footer-nav-item" data-id="keyboard" href="/keyboard"><i class="fa fa-keyboard-o" aria-hidden="true"></i></a>
+    <div class="footer-nav-item" id="footer-nav-item">
+      <a data-id="keyboard" href="/keyboard" data-order="3"><i class="fa fa-keyboard-o" aria-hidden="true"></i></a>
     </div>
   </div>
 </template>
 
 <template name="page">
   {{> appbar}}
-  <div class="page">
+  <div class="page" id="page">
     <content>
       {{> yield "page"}}
     </content>

@@ -24,7 +24,6 @@ font-weight: normal;
 src: local('Bebas Neue'), url('assets/fonts/BebasNeue.woff') format('woff');
 }
 
-
 /* COMMON LAYOUT*/
 .flex-start{
   align-self: flex-start;
@@ -65,6 +64,8 @@ src: local('Bebas Neue'), url('assets/fonts/BebasNeue.woff') format('woff');
 
 /* CONTAINER LAYOUT*/
 .container{
+  animation-duration: 0.5s !important;
+
   height:calc(100% - 136px);
   width: 100%;
   display: flex;
