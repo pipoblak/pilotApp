@@ -30,11 +30,16 @@ Template.footernavbar.events({
     var slideDirection;
     if(target.attr("data-order") > selected.attr("data-order")){
       slideDirection="Left";
+      container.addClass("animated slideOut" + slideDirection);
     }
-    else {
+    else if(target.attr("data-order") < selected.attr("data-order")){
       slideDirection="Right";
+      container.addClass("animated slideOut" + slideDirection);
     }
-    container.addClass("animated slideOut" + slideDirection);
+    else{
+
+    }
+
     container.one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
       Router.go($(event.target).closest('a').attr("href"));
     });
