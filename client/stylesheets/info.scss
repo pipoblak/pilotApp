@@ -194,7 +194,7 @@
   width: 100%;
   margin:auto;
   position: absolute;
-  z-index: -2
+  z-index: -1;
 }
 .percentage-holder > div  > div> span{
   font-family: "Bebas";
@@ -205,10 +205,13 @@
 .percentage-holder:after{
   content: "";
   border-radius: 50%;
-  background: $percentage-holder;
-  height: 100%;
-  width: 100%;
+  height: 110%;
+  width: 110%;
   margin:auto;
   position: absolute;
-  z-index: -2
+  z-index: -2;
+  background: conic-gradient(yellowgreen 80%, transparent 0 20%);
+  border-radius: 50%;
+  top: -1vw;
+  left: -1vw;
 }
