@@ -3,18 +3,8 @@ import { ReactiveVar } from 'meteor/reactive-var';
 
 import './main.html';
 
-// Template.hello.onCreated(function helloOnCreated() {
-//   // counter starts at 0
-//   this.counter = new ReactiveVar(0);
-// });
-//
-// Template.hello.helpers({
-//   counter() {
-//     return Template.instance().counter.get();
-//   },
-// });
-//
 var firstopen=true;
+
 Template.footernavbar.events({
   'click #footer-nav-item'(event, instance) {
     event.preventDefault();
@@ -52,11 +42,13 @@ Template.footernavbar.onRendered(function() {
   selected.removeClass("selected");
   item.addClass("selected");
 });
+
 Template.page.onRendered(function(){
   var page=$(document).find("body");
   page.hide();
   page.fadeIn();
 });
+
 Template.home.onRendered(function () {
   if(firstopen){
     var configContainer=$(document).find(".config-container");
@@ -85,4 +77,12 @@ Template.home.onRendered(function () {
 Template.infos.onRendered(function () {
   var container =$(".container");
   container.addClass("animated fadeIn")
+
 })
+genConicProgress = function (element,atual,to,color){
+  var gradient = new ConicGradient({
+    stops: element.css('color') +" " +to + "%, #24242e 0" , // required
+  });
+  element.css("background","url('" + gradient.dataURL + "')");
+  return;
+}

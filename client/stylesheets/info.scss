@@ -61,7 +61,7 @@
 }
 
 .temperature-progress-holder{
-  width: 85%;
+  width: 100%;
   background: $background !important;
   position: relative;
   height: 100%;
@@ -85,15 +85,11 @@
 .temperature-progress-holder:after{
   color: #24242e;
   content: "12 °";
-  font-size: 0.7rem;
+  font-size: 3vw;
   font-family: "Bebas";
   position: relative;
   margin: auto;
   margin-right: -2%;
-  @media (min-height: 768px){
-    font-size: 100%;
-  }
-
 }
 
 .temperature-progress-holder.cpu{
@@ -126,31 +122,19 @@
   background: $light-blue;
 }
 .progress{
-  width: 75%;
+  width: 87%;
   height: 80%;
-  background: white;
   margin: auto 0;
   margin-left: 1.4%;
   position: relative;
 }
 .progress>div{
   width: 100%;
-}
-.progress>div:before{
-  content: "";
-  position: absolute;
-  right: -3vw;
-  bottom: 0;
-  width: 4vw;
-  -webkit-transform: skew(-20deg);
-  -moz-transform: skew(-20deg);
-  -ms-transform: skew(-20deg);
-  transform: skew(-20deg);
   height: 100%;
-  border-left: none;
-  background: white;
+  background:linear-gradient(109deg, white 95%, transparent 95.5% );
+  display: flex;
+  justify-content: flex-end;
 }
-
 /* PERCENTAGE-HOLDER*/
 .percentages-holder{
   height: 100%;
@@ -202,16 +186,34 @@
   margin: auto;
   font-size:4vw;
 }
-.percentage-holder:after{
-  content: "";
-  border-radius: 50%;
+.percentage-holder > div  > div> span > span{
+  font-family: "Bebas";
+  font-size:3vw;
+}
+.percentage-holder>.circle-bar{
   height: 110%;
   width: 110%;
   margin:auto;
   position: absolute;
   z-index: -2;
-  background: conic-gradient(yellowgreen 80%, transparent 0 20%);
   border-radius: 50%;
   top: -1vw;
   left: -1vw;
+}
+
+.cpu-color>.circle-bar{
+  background: conic-gradient($light-green 43%, $background 0);
+  color: $light-green;
+}
+.gpu-color>.circle-bar{
+  background: conic-gradient($pink 65%, $background 0);
+  color: $pink;
+}
+.ram-color>.circle-bar{
+  background: conic-gradient($light-red 30%, $background 0);
+  color: $light-red;
+}
+.hd-color>.circle-bar{
+  background: conic-gradient($light-orange 12%, $background 0);
+  color: $light-orange;
 }
