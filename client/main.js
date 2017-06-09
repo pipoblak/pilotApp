@@ -76,8 +76,23 @@ Template.home.onRendered(function () {
 
 Template.infos.onRendered(function () {
   var container =$(".container");
-  container.addClass("animated fadeIn")
+  container.addClass("animated fadeIn");
+  $(".cooler-input").on("change",function(event){
+    if(this.value <=0){
+      $(this).parents("div").closest("#cooler").find(".pc-i-cooler").css("animation","0s infinite spin-cooler");
+      $(this).parents("div").closest("#cooler").find(".pc-i-cooler").css("animation-timing-function","linear");
+    }
+    else if(this.value >=0 && this.value < 80){
+      $(this).parents("div").closest("#cooler").find(".pc-i-cooler").css("animation","5s infinite spin-cooler");
+      $(this).parents("div").closest("#cooler").find(".pc-i-cooler").css("animation-timing-function","linear");
+    }
+    else if(this.value >=80){
+      $(this).parents("div").closest("#cooler").find(".pc-i-cooler").css("animation","1s infinite spin-cooler");
+      $(this).parents("div").closest("#cooler").find(".pc-i-cooler").css("animation-timing-function","linear");
+    }
 
+
+  })
 })
 genConicProgress = function (element,atual,to,color){
   var gradient = new ConicGradient({

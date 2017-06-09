@@ -37,6 +37,15 @@ src: local('Bebas Neue'), url('assets/fonts/BebasNeue.woff') format('woff');
 .flex-just-end{
   justify-content: flex-end;
 }
+.text-left{
+  text-align: left;
+}
+.text-center{
+  text-align: center;
+}
+.text-right{
+  text-align: right;
+}
 /* APP-BAR LAYOUT*/
 .app-bar{
   width: 100%;
