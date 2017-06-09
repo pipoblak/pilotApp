@@ -263,7 +263,12 @@
   display: flex;
   justify-content: flex-end;
 }
-
+.temperature-chart-holder{
+  grid-row-start: 1;
+  grid-row-end: 4;
+  grid-column-start: 2;
+  height: 100%;
+}
 .temperature-chart{
   grid-column-start: 2;
   grid-row-start: 1;
@@ -271,12 +276,12 @@
   height: 100%;
   width: 70%;
   margin: auto;
-  background: white;
   margin-left: 12vw;
   display: flex;
+  position: relative;
 }
 .temperature-chart > canvas{
-  max-height: 100%;
+  position: absolute;
 }
 /* PERCENTAGE-HOLDER*/
 .percentages-holder{
