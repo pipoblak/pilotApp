@@ -90,10 +90,59 @@ Template.infos.onRendered(function () {
       $(this).parents("div").closest("#cooler").find(".pc-i-cooler").css("animation","1s infinite spin-cooler");
       $(this).parents("div").closest("#cooler").find(".pc-i-cooler").css("animation-timing-function","linear");
     }
-
-
   })
+  var ctx = document.getElementById("chart-temperature").getContext('2d');
+  var myChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: ["CPU","GPU","MOTHERBOARD"],
+      datasets: [{
+        lineTension: 0,
+        label: 'CPU',
+        data: [12, 50, 45],
+        borderColor: ['#37ff98'],
+        backgroundColor:['rgba(0,0,0,0)'],
+        borderWidth: 0},
+      {
+        lineTension: 0,
+        label: 'GPU',
+        data: [50, 70, 40],
+        borderColor: ['#ff3977'],
+        backgroundColor:['rgba(0,0,0,0)'],
+        borderWidth: 0},
+      {
+        lineTension: 0,
+        label: 'MOTHERBOARD',
+        data: [0, 30, 100],
+        borderColor: ['#2cc6de'],
+        backgroundColor:['rgba(0,0,0,0)'],
+        borderWidth: 0}]},
+    options: {
+      elements: { point: { radius: 0 } },
+      scales: {
+      xAxes: [{
+        display:false,
+        gridLines: {
+          drawBorder: false,
+          display:false}}],
+      yAxes: [{
+        display:false,
+          gridLines: {
+            drawBorder: false,
+            display:false}}]},
+      responsive:true,
+      maintainAspectRatio:false,
+      legend: {
+        display:false},
+      title: {
+        display: false},
+      tooltips:{
+        enabled:false
+      }
+      }
+  });
 })
+
 genConicProgress = function (element,atual,to,color){
   var gradient = new ConicGradient({
     stops: element.css('color') +" " +to + "%, #24242e 0" , // required
