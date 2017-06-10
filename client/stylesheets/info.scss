@@ -330,6 +330,7 @@
   margin:auto;
   position: absolute;
   z-index: -1;
+  -webkit-transform: translate3d(0px,0px,0px);
 }
 .percentage-holder > div  > div> span{
   font-family: "Bebas Neue";
@@ -350,21 +351,30 @@
   border-radius: 50%;
   top: -1vw;
   left: -1vw;
+
 }
 
 .cpu-color>.circle-bar{
   background: conic-gradient($light-green 43%, $background 0);
+  background-position: center;
+  background-size: 110%;
   color: $light-green;
 }
 .gpu-color>.circle-bar{
   background: conic-gradient($pink 65%, $background 0);
+  background-position: center;
+  background-size: 110%;
   color: $pink;
 }
 .ram-color>.circle-bar{
   background: conic-gradient($light-red 30%, $background 0);
+  background-position: center;
+  background-size: 110%;
   color: $light-red;
 }
 .hd-color>.circle-bar{
   background: conic-gradient($light-orange 12%, $background 0);
+  background-position: center;
+  background-size: 110%;
   color: $light-orange;
 }

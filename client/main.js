@@ -145,8 +145,10 @@ Template.infos.onRendered(function () {
 
 genConicProgress = function (element,atual,to,color){
   var gradient = new ConicGradient({
-    stops: element.css('color') +" " +to + "%, #24242e 0" , // required
+    stops: element.css('color') +" " +to + "%, #24242e 0%" , // required
   });
-  element.css("background","url('" + gradient.dataURL + "')");
+  element.css("background","url('" + gradient.blobURL + "')");
+  element.css("background-size","110%");
+  element.css("background-position","center");
   return;
 }
