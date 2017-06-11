@@ -56,8 +56,9 @@ Template.page.onRendered(function(){
 
 //HOME ON RENDERED
 Template.home.onRendered(function () {
+  var configContainer=$(document).find(".config-container");
+  configContainer.perfectScrollbar();
   if(firstopenHome){
-    var configContainer=$(document).find(".config-container");
     var machineTitle= $(document).find(".machine-title span");
     var actionsMenu= $(document).find(".actions-holder")
     var actionTitle= $(document).find(".title-holder")

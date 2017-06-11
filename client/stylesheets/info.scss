@@ -21,15 +21,15 @@
   width: 100%;
   height: 40%;
   display: flex;
-      overflow: auto;
 }
 .cooler-info{
   margin: auto;
   width: 50vw;
-  height: 50vw;
+  height: 100%;
   display: grid;
   grid-template-rows: 50%;
   grid-template-columns: 50%;
+
 }
 .cooler-info > div {
   display: flex;
@@ -60,13 +60,18 @@
   flex-direction: column;
   height: 15vw;
   margin: auto;
+  @media (min-width:100vh ){
+    height: 3vw;;
+  }
 }
 .cooler-icon-holder > i {
   font-size: 15vw;
-
   margin: auto;
   color: $white-purple;
   line-height: 65%;
+  @media (min-width:100vh ){
+    font-size: 4vw;
+  }
 }
 .cooler-slider-and-description-holder{
   display: flex;
@@ -100,6 +105,9 @@
   position: absolute;
   top:-1vw;
   margin: auto;
+  @media (min-width:100vh ){
+    top:-1.4vw;
+  }
 }
 .cooler-slider > input[type="range"]::-webkit-slider-thumb{
   -webkit-appearance:none;
@@ -109,6 +117,10 @@
   position:relative;
   z-index:5;
   border-radius: 50%;
+  @media (min-width:100vh ){
+    height: 1vw;
+    width: 1vw;
+  }
 }
 
 .cooler-slider > input[type="range"]:hover{
@@ -133,6 +145,9 @@
   font-size: 2vw;
   font-family: 'Bebas Neue';
   display: flex;
+  @media (min-width:100vh ){
+    font-size: 0.8vw;
+  }
 }
 .cooler-slider-description-divider{
   color: $white-purple;
@@ -141,6 +156,9 @@
   font-size: 1vw;
   font-family: 'Bebas Neue';
   display: flex;
+  @media (min-width:100vh ){
+    font-size: 0.5vw;
+  }
 }
 .cooler-slider-and-description-holder> div > div >span{
   width: 100%;
@@ -164,6 +182,9 @@
   flex-direction: row;
   max-height: 54px;
   animation-duration: 0.5s;
+  @media (min-width:100vh ){
+    height: 2vw;
+  }
 }
 
 .temperature-icon{
@@ -174,6 +195,10 @@
   max-height: 54px;
   display: flex;
   color: white;
+  @media (min-width:100vh ){
+    width: 2vw;
+    height: 2vw;
+  }
 }
 .temperature-icon>i{
   margin: auto;
@@ -210,6 +235,9 @@
   border: solid 1px;
   height: 100%;
   border-left: none;
+  @media (min-width:100vh ){
+    width: 4.7vw;
+  }
 }
 .temperature-progress-holder:after{
   color: #24242e;
@@ -219,6 +247,9 @@
   position: relative;
   margin: auto;
   margin-right: -2%;
+  @media (min-width:100vh ){
+    font-size: 1.5vw;
+  }
 }
 
 .temperature-progress-holder.cpu{
@@ -300,6 +331,10 @@
   display: flex;
   flex-direction: column;
   position: relative;
+  @media (min-width:100vh ){
+    height: 6vw;
+    width: 6vw;
+  }
 }
 .percentage-holder > div{
   margin:auto;
@@ -321,6 +356,10 @@
   line-height: 75%;
   color: $background;
   margin-bottom: 1vw;
+  @media (min-width:100vh ){
+    font-size: 2vw;
+    margin-bottom: -1vw;
+  }
 }
 .percentage-holder:before{
   content: "";
@@ -338,6 +377,9 @@
   color: white;
   margin: auto;
   font-size:4vw;
+  @media (min-width:100vh ){
+    font-size: 1.5vw;
+  }
 }
 .percentage-holder > div  > div> span > span{
   font-family: "Bebas Neue";
@@ -352,6 +394,11 @@
   border-radius: 50%;
   top: -1vw;
   left: -1vw;
+  @media (min-width:100vh ){
+    top: -0.3vw;
+    left: -0.3vw;
+  }
+
 
 }
 

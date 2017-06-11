@@ -25,7 +25,7 @@
   display: flex;
   flex-direction: column;
   max-height: 70%;
-  overflow: auto;
+  position: relative;
 }
 .config-holder{
   width: 75%;
@@ -37,6 +37,9 @@
   margin-bottom:8px;
   @media (max-height: 768px){
     height: 35px;
+  }
+  @media (min-width:100vh ){
+    height: 6vw;
   }
 }
 .config-holder.flex-start{
@@ -59,14 +62,19 @@
   margin-left:3px;
   width: 100%;
   @media (max-width: 1024px){
-    font-size:calc( 0px + (16 * 100vw ) / 1024);
+  font-size: 1.5vw;
   }
   @media (max-width: 800px){
-    font-size:calc( 0px + (24 * 100vw ) / 1024);
+  font-size: 2vw;
+
   }
   @media (max-width: 700px){
-    font-size:calc( 0px + (36 * 100vw ) / 1024);
+    font-size:calc( 0px + (14 * 1024px ) / 1024);
   }
+  @media (min-width:100vh ){
+    font-size: 1.5vw;
+  }
+
 }
 .config-holder > i{
   margin: auto 0;
@@ -139,7 +147,7 @@
 /*Actions */
 .actions-menu-holder{
     display: flex;
-    height: 30%;
+    height: 45%;
     margin-top: 8px;
     flex-direction: column;
 }
@@ -163,6 +171,7 @@
   border-radius: 3%;
   display: flex;
   flex-direction: column;
+
 }
 .action:hover{
   transform: scale(1.1);
@@ -183,6 +192,9 @@
   @media (max-height: 768px){
     font-size: 28px;
   }
+  @media (min-width:100vh ){
+    font-size: 1.5vw;
+  }
 }
 .action-title{
   display: flex;
@@ -199,7 +211,10 @@
     font-size: 12px;
   }
   @media (max-height: 768px){
-    font-size: 8px;
+    font-size: 2.4vw;
+  }
+  @media (min-width:100vh ){
+    font-size: 0.8vw;
   }
 }
   /*Actions Border Color*/
