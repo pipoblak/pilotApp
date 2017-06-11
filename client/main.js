@@ -3,8 +3,10 @@ import { ReactiveVar } from 'meteor/reactive-var';
 
 import './main.html';
 
-var firstopen=true;
+var firstopenHome=true;
+var firstopenInfos= true;
 
+//FOOTER NAV-BAR EVENTS
 Template.footernavbar.events({
   'click #footer-nav-item'(event, instance) {
     event.preventDefault();
@@ -35,6 +37,8 @@ Template.footernavbar.events({
     });
   },
 });
+
+//ON RENDERED FOOTERNAVBAR
 Template.footernavbar.onRendered(function() {
   var path = window.location.pathname;
   var item = $(document).find("[href='"+path+"']");
@@ -43,14 +47,16 @@ Template.footernavbar.onRendered(function() {
   item.addClass("selected");
 });
 
+//PAGE ON RENDERED
 Template.page.onRendered(function(){
   var page=$(document).find("body");
   page.hide();
   page.fadeIn();
 });
 
+//HOME ON RENDERED
 Template.home.onRendered(function () {
-  if(firstopen){
+  if(firstopenHome){
     var configContainer=$(document).find(".config-container");
     var machineTitle= $(document).find(".machine-title span");
     var actionsMenu= $(document).find(".actions-holder")
@@ -67,15 +73,39 @@ Template.home.onRendered(function () {
       machineTitle.show();
       actionsMenu.show();
     });
-    firstopen=false;
+    firstopenHome=false;
   }
   else{
     $(document).find(".container").addClass("animated fadeIn")
   }
 })
 
+//INFOS ON RENDERED
 Template.infos.onRendered(function () {
+  var coolerInfo = $(document).find(".cooler-info");
+  var temperatureCpu= $(document).find(".temperature-icon.cpu").closest(".temperature");
+  var temperatureGpu= $(document).find(".temperature-icon.gpu").closest(".temperature");
+  var temperatureMb= $(document).find(".temperature-icon.motherboard").closest(".temperature");
+  var temperatureChart= $(document).find(".temperature-chart");
+  var percentageHolder = $(document).find(".percentage-holder");
+  temperatureGpu.hide();
+  temperatureMb.hide();
+  temperatureChart.hide();
+  percentageHolder.addClass("animated slideInUp");
+  temperatureCpu.addClass("animated slideInLeft");
+  temperatureCpu.one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
+    temperatureGpu.addClass('animated bounceIn');
+    temperatureGpu.show();
+    temperatureMb.addClass('animated bounceIn');
+    temperatureMb.show();
+    temperatureMb.one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
+      temperatureChart.addClass("animated zoomIn");
+      temperatureChart.show();
+    });
+  });
+  coolerInfo.addClass("animated bounceInDown");
   var container =$(".container");
+  //firstopenInfos
   container.addClass("animated fadeIn");
   $(".cooler-input").on("change",function(event){
     if(this.value <=0){
@@ -91,6 +121,7 @@ Template.infos.onRendered(function () {
       $(this).parents("div").closest("#cooler").find(".pc-i-cooler").css("animation-timing-function","linear");
     }
   })
+  //CHART TEMPERATURE
   var ctx = document.getElementById("chart-temperature").getContext('2d');
   var myChart = new Chart(ctx, {
     type: 'line',
