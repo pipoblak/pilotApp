@@ -1,4 +1,97 @@
 <template name="keyboard">
 <div class="container">
+  <div class="divider"></div>
+  <div class="keyboard-keys-holder small-keys">
+    <div class="title-holder">
+      <span class="title">TECLAS DE AÇÃO</span>
+    </div>
+    <div class="keys-holder">
+      <div class="key small-key"><span>Prnt</span><span>Scrn</span></div>
+      <div class="key small-key"><span>Enter</span></div>
+      <div class="key small-key"><span>Pg</span><span>Up</span></div>
+      <div class="key small-key"><span>Pg</span><span>Dn</span></div>
+      <div class="key small-key"><span>Del</span></div>
+      <div class="key small-key"><span>Home</span></div>
+      <div class="key small-key"><span>End</span></div>
+    </div>
+  </div>
+  <div class="keyboard-keys-holder big-keys">
+    <div class="title-holder directional-keys">
+      <span class="title">TECLAS DIRECIONAIS</span>
+    </div>
+    <div class="keys-holder">
+      <div class="key big-key"><span><i class="fa fa-arrow-up" aria-hidden="true"></i></span></div>
+    </div>
+    <div class="keys-holder">
+      <div class="big-keys-holder">
+        <div class="key big-key"><span><i class="fa fa-arrow-left" aria-hidden="true"></i></span></div>
+        <div class="key big-key"><span><i class="fa fa-arrow-down" aria-hidden="true"></i></span></div>
+        <div class="key big-key"><span><i class="fa fa-arrow-right" aria-hidden="true"></i></span></div>
+      </div>
+    </div>
+  </div>
+  <div class="keyboard-keys-holder big-keys">
+    <div class="title-holder volume-keys">
+      <span class="title">TECLAS DE VOLUME</span>
+    </div>
+    <div class="keys-holder flex-column">
+      <span class="icon-sound-keys"><i class="fa fa-volume-off" aria-hidden="true" id="volume-icon"></i></span>
+      <div class="range-slider-and-description-holder">
+        <div class="range-slider-holder">
+          <div class="range-slider">
+            <input type="range" value="0" class="range-sound-input"/>
+          </div>
+        </div>
+        <div class="range-slider-description-divider-holder">
+          <div class="range-slider-description-divider text-left">
+            <span>|</span>
+          </div>
+          <div class="range-slider-description-divider">
+
+          </div>
+          <div class="range-slider-description-divider text-center">
+            <span>|</span>
+          </div>
+          <div class="range-slider-description-divider">
+
+          </div>
+          <div class="range-slider-description-divider text-right">
+            <span>|</span>
+          </div>
+        </div>
+        <div class="range-slider-description-holder">
+          <div class="range-slider-description text-left">
+            <span>0</span>
+          </div>
+          <div class="range-slider-description">
+
+          </div>
+          <div class="range-slider-description text-center">
+            <span>50</span>
+          </div>
+          <div class="range-slider-description">
+
+          </div>
+          <div class="range-slider-description text-right">
+            <span>100</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="keyboard-keys-holder small-keys">
+    <div class="title-holder">
+      <span class="title">TECLAS DE MULTIMÍDIA</span>
+    </div>
+    <div class="keys-holder">
+      <div class="mult-keys-holder">
+        <div class="key small-key"><span><i class="fa fa-fast-backward" aria-hidden="true"></i></span></div>
+        <div class="key small-key"><span><i class="fa fa-backward" aria-hidden="true"></i></span></div>
+        <div class="key medium-key"><span><i class="fa fa-play" aria-hidden="true"></i></span></div>
+        <div class="key small-key"><span><i class="fa fa-forward" aria-hidden="true"></i></span></div>
+        <div class="key small-key"><span><i class="fa fa-fast-forward" aria-hidden="true"></i></span></div>
+      </div>
+    </div>
+  </div>
 </div>
 </template>

@@ -174,7 +174,32 @@ Template.infos.onRendered(function () {
       }
   });
 })
-
+Template.keyboard.onRendered(function(){
+  $(".range-sound-input").on("change",function(event){
+    if(this.value <=0){
+      $("#volume-icon").attr('class','fa fa-volume-off');
+    }
+    else if (this.value>0 && this.value<80){
+      $("#volume-icon").attr('class','fa fa-volume-down');
+    }
+    else if (this.value>=80){
+      $("#volume-icon").attr('class','fa fa-volume-up');
+    }
+  });
+  var container =$(".container");
+  //firstopenInfos
+  $(".key").hide();
+  $("#volume-icon").hide();
+  $(".range-slider-and-description-holder").hide();
+  container.addClass("animated fadeIn");
+  container.one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
+    $(".key").show();
+    $("#volume-icon").show();
+    $("#volume-icon").addClass("animated zoomIn");
+    $(".range-slider-and-description-holder").show();
+    $(".range-slider-and-description-holder").addClass("animated zoomIn")
+    $(".key").addClass("animated bounceIn");});
+});
 genConicProgress = function (element,atual,to,color){
   var gradient = new ConicGradient({
     stops: element.css('color') +" " +to + "%, #24242e 0%" , // required
