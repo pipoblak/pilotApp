@@ -96,14 +96,14 @@
 .cooler-slider > input[type="range"]{
   width: 100%;
   -webkit-appearance:none;
-  height: 3vw;
+  height: 13vw;
   background: transparent;
   background-position:center;
   background-repeat:no-repeat;
   overflow:hidden;
   outline: none;
   position: absolute;
-  top:-1vw;
+  top:-6vw;
   margin: auto;
   @media (min-width:100vh ){
     top:-1.4vw;
