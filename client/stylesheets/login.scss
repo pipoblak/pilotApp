@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,100');
+@import  "lib/colors";
+
+/* LOGIN LOGO*/
+.login-logo{
+  height: 50%;
+  display: flex;
+}
+.login-logo> i{
+  max-height: 70%;
+  margin: auto;
+  font-size: 40vh;
+  color: $gray-purple;
+}
+
+/*LOGIN FIELDS*/
+
+.login-fields{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.label-login{
+  font-family: "Bebas Neue";
+  font-size: 3vh;
+  color:white;
+  margin:auto;
+  padding: 2vh;
+}
+
+/* INPUT LOGIN*/
+.input-login{
+  width: 80%;
+  margin: auto;
+  background: $background-accent;
+  height: 5vh;
+  border: none;
+  border-radius: 0.5vh;
+  color: white;
+  text-align: center;
+  font-size: 2.5vh;
+  font-family: "Roboto";
+}
+.input-login:active, .input-login:hover, .input-login:focus{
+  outline: none;
+  transform: scale(1.1);
+}
+
+/* LOGIN TIP*/
+.tip-login{
+  color: $gray-purple;
+  font-family: "Roboto";
+  width: 90%;
+  font-size: 2vh;
+  text-align: right;
+  padding: 0.5vh;
+}
+
+/* SUBMIT LOGIN*/
+.submit-login{
+  height: 9vh;
+  width: 40%;
+  background: $app-bar;
+  border: none;
+  border-radius: 0.5vh;
+  margin: auto;
+  font-family: "Bebas Neue";
+  font-size: 4vh;
+  color:white;
+}
+.submit-login:active, .submit-login:hover,.submit-login:focus{
+  outline: none;
+  transform:scale(1.1);
+  cursor: pointer;
+}

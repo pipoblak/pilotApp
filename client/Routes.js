@@ -13,3 +13,7 @@ Router.route('/keyboard', function () {
   this.layout('page')
   this.render('keyboard', {to: 'page'});
 });
+
+Router.route('/login', function () {
+  this.layout('login')
+});
