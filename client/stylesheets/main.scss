@@ -95,11 +95,11 @@ src: local('Bebas Neue'), url('assets/fonts/BebasNeue.woff') format('woff');
     top:-1.4vw;
   }
 }
-.range-slider > input[type="range"]::-webkit-slider-thumb{
+.range-slider > input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance:none;
   width:3vw;
   height:3vw;
-  background:#F26B5E;
+  background:$salmon;
   position:relative;
   z-index:5;
   border-radius: 50%;
@@ -108,7 +108,32 @@ src: local('Bebas Neue'), url('assets/fonts/BebasNeue.woff') format('woff');
     width: 1vw;
   }
 }
-
+.range-slider > input[type=range]::-ms-thumb{
+  -webkit-appearance:none;
+  width:3vw;
+  height:3vw;
+  background:$salmon;
+  position:relative;
+  z-index:5;
+  border-radius: 50%;
+  @media (min-width:100vh ){
+    height: 1vw;
+    width: 1vw;
+  }
+}
+.range-slider > input[type=range]::-moz-range-thumb {
+ -webkit-appearance:none;
+ width:3vw;
+ height:3vw;
+ background:$salmon;
+ position:relative;
+ z-index:5;
+ border-radius: 50%;
+ @media (min-width:100vh ){
+   height: 1vw;
+   width: 1vw;
+ }
+}
 .range-slider > input[type="range"]:hover{
 
 }

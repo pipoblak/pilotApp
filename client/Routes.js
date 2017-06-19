@@ -1,9 +1,13 @@
 Router.configure({
   noRoutesTemplate:true
 });
+CurrentUser = new Ground.Collection('CurrentUser', { connection: null });
+
 Router.route('/', function () {
-  this.layout('page')
-  this.render('home', {to: 'page'});
+  if (verifyLogin()){
+    this.layout('page')
+    this.render('home', {to: 'page'});
+  }
 });
 Router.route('/infos', function () {
   this.layout('page')
@@ -15,5 +19,25 @@ Router.route('/keyboard', function () {
 });
 
 Router.route('/login', function () {
-  this.layout('login')
+  if (verifyLogin()){
+    Router.go("/");}
+  else{
+    this.layout('login')
+  }
+
 });
+
+Router.route('/logout', function () {
+  CurrentUser.remove({});
+  Router.go('login')
+});
+
+function verifyLogin(){
+  if(CurrentUser.find({}).fetch()<=0){
+    Router.go("login");
+    return false;
+  }
+  else{
+    return true;
+  }
+}
