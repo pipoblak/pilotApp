@@ -1,12 +1,11 @@
 Template.keyboard.onRendered(function(){
   var container =$(".container");
-  container.attr("style","opacity:1");
-
   //firstopenInfos
   $(".key").hide();
   $("#volume-icon").hide();
   $(".range-slider-and-description-holder").hide();
   container.addClass("animated fadeIn");
+  container.attr("style","opacity:1");
   container.one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
     $(".key").show();
     $("#volume-icon").show();
@@ -14,7 +13,7 @@ Template.keyboard.onRendered(function(){
     $(".range-slider-and-description-holder").show();
     $(".range-slider-and-description-holder").addClass("animated zoomIn")
     $(".key").addClass("animated bounceIn");});
-    $(".container").addClass("animated fadeIn");
+
 });
 
 
