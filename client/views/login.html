@@ -3,13 +3,21 @@
     <div class="login-logo">
     <i class="pc-i-logo"></i>
     </div>
-    <div class="login-fields">
-      <span class="label-login" >Email</span>
-      <input type="text" class="input-login" id="email">
-      <span class="label-login" >Senha</span>
-      <input type="password" class="input-login" id="password">
+    <div class="login-holder">
+      <div class="login-fields">
+        <span class="label-login" >Email</span>
+        <input type="text" class="input-login" id="email">
+        <span class="label-login" >Senha</span>
+        <input type="password" class="input-login" id="password">
+      </div>
+      <span class="tip-login">Esqueceu sua <b>senha?</b></span>
+      <button type="submit" class="submit-login">Entrar</button>
     </div>
-    <span class="tip-login">Esqueceu sua <b>senha?</b></span>
-    <button type="submit" class="submit-login">Entrar</button>
+    <div class="login-loading">
+      <span><i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i></span>
+    </div>
+    <div class="toast animated slideInUp">
+      <span> </span>
+    </div>
   </div>
 </template>

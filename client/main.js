@@ -8,15 +8,43 @@ import './main.html';
 //LOGIN TEMPLATE
 Template.login.events({
   'click .submit-login' (event){
-    user={email:$("#email").val()}
-    CurrentUser.remove({});
-    CurrentUser.insert(user);
-    Router.go("/");
+    $(".login-holder").fadeOut();
+    $(".login-loading").fadeIn();
+    $.ajax({
+      type:"GET",
+      url:"http://localhost:80/login",
+      data:{email: $("#email").val(),password: $("#password").val()},
+      success:function(result){
+        $(".login-holder").fadeIn();
+        $(".login-loading").fadeOut();
+        var toast = $(document).find(".toast");
+        if(result.response=="ok"){
+          CurrentUser.remove({});
+          CurrentUser.insert({email: $("#email").val(),password: $("#password").val(),apikey:result.apikey});
+          Router.go("/");
+        }
+        else if(result.response=="fail"){
+          toast.html("<span> Email ou senha incorretos.</span>");
+        }
+        else{
+          toast.html("<span> Erro de conexão com o servidor, verifique se você está conectado à Internet e se o Email e Senha estão corretos.</span>");
+        }
+        toast.show();
+        setTimeout(function(){ toast.fadeOut(); }, 5000);
+      },
+      error:function(result){
+        $(".login-holder").fadeIn();
+        $(".login-loading").fadeOut();
+      }
+    });
+
   },
 });
 
 Template.login.onRendered(function(){
   var container =$(".container");
+  $(document).find(".login-loading").hide();
+  $(document).find(".toast").hide();
   container.attr("style","opacity:1");
 });
 //FOOTER NAV-BAR EVENTS
