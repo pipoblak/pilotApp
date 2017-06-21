@@ -1,20 +1,32 @@
 <template name="home">
+  <div class="loading-holder" style="opacity:0;">
+    <span>
+      <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
+      <span class="loading-tip">Buscando Informações</span>
+    </span>
+
+  </div>
   <div class="container" style="opacity:0">
     <div class="machine-title">
       <span>galaxy</span>
     </div>
     <div class="config-container">
-      <div class="config-holder cpu flex-end flex-just-end">
-        <span>Intel Core I7 7700K 4.20 Ghz</span><i class="pc-i-cpu"></i>
+      {{#each component}}
+        <div class="config-holder {{type}} {{ getFlexDirection @index }}">
+          <span>{{title}}</span><i class="pc-i-{{type}}"></i>
+        </div>
+      {{/each}}
+      <!-- <div class="config-holder cpu flex-end flex-just-end">
+        <span>{{cpu}}</span><i class="pc-i-cpu"></i>
       </div>
       <div class="config-holder gpu flex-start flex-just-start">
-        <span>NVIDIA Geforce GTX 1070</span><i class="pc-i-gpu"></i>
+        <span>{{gpu}}</span><i class="pc-i-gpu"></i>
       </div>
       <div class="config-holder motherboard flex-end flex-just-end">
-        <span>Z170 Gaming</span><i class="pc-i-motherboard"></i>
+        <span>{{motherboard}}</span><i class="pc-i-motherboard"></i>
       </div>
       <div class="config-holder hd flex-start flex-just-start">
-        <span>Seagate 1TB </span><i class="pc-i-hd"></i>
+        <span>{{hd}} </span><i class="pc-i-hd"></i>
       </div>
       <div class="config-holder ram flex-end flex-just-end">
         <span>16GB 2100Mhz</span><i class="pc-i-ram"></i>
@@ -27,7 +39,7 @@
       </div>
       <div class="config-holder case flex-start flex-just-start">
         <span>RAIDMAX Alpha Prime White</span><i class="pc-i-case"></i>
-      </div>
+      </div> -->
     </div>
     <div class="actions-menu-holder">
       <div class="title-holder">
@@ -73,6 +85,7 @@
             </div>
           </div>
         </div>
+
       </div>
     </div>
   </div>

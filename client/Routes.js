@@ -1,7 +1,9 @@
 Router.configure({
   noRoutesTemplate:true
 });
+
 CurrentUser = new Ground.Collection('CurrentUser', { connection: null });
+CurrentUserMachine = new Ground.Collection('CurrentUserMachine', { connection: null });
 
 Router.route('/', function () {
   if (verifyLogin()){
@@ -31,7 +33,7 @@ Router.route('/logout', function () {
   CurrentUser.remove({});
   Router.go('login')
 });
-
+//Veririfica se há um usuário conectado
 function verifyLogin(){
   if(CurrentUser.find({}).fetch()<=0){
     Router.go("login");

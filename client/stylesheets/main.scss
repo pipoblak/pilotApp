@@ -59,6 +59,26 @@ src: local('Bebas Neue'), url('assets/fonts/BebasNeue.woff') format('woff');
   text-align: right;
 }
 /*COOMON CONTROLS */
+.loading-holder{
+  height: 50vh;
+  display: flex;
+}
+.loading-holder > span{
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  color: $white-purple;
+}
+.loading-holder > span > i {
+  margin: auto;
+}
+.loading-tip{
+  font-family: "Roboto";
+  color: $white-purple;
+  font-size: 2vh;
+  padding: 1vh;
+}
+
 .range-slider-and-description-holder{
   display: flex;
   height: 20%;
