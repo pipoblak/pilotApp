@@ -47,6 +47,27 @@ Template.login.onRendered(function(){
   $(document).find(".toast").hide();
   container.attr("style","opacity:1");
 });
+
+//TEMPLATE app-bar
+Template.appbar.onRendered(function(){
+  $(".config-modal").attr('style','opacity:1');
+  $(".config-modal").hide();
+  $(".config-modal-option").hide();
+});
+Template.appbar.events({
+  'click .close-modal' (event, instance){
+    $(".config-modal").slideUp(function(){
+      $(".config-modal-option").hide();
+    });
+  },
+  'click .svg-logo' (event, instance){
+    $(".config-modal").show();
+    $(".config-modal").one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
+      $(".config-modal-option").show();
+    });
+  }
+});
+
 //FOOTER NAV-BAR EVENTS
 Template.footernavbar.events({
   'click #footer-nav-item'(event, instance) {
