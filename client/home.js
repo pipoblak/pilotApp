@@ -1,10 +1,4 @@
 var firstopenHome=true;
-
-//Retorna os componentes da máquina do current user
-Template.home.component = function(){
-  return CurrentUserMachine.find({}).fetch();
-}
-
 //Helpers do template HOME
 Template.home.helpers({
   //Metodo pra poder fazer o zig zag de direção dos componentes da maquina no CSS
@@ -16,6 +10,10 @@ Template.home.helpers({
       return "flex-start flex-just-start";
     }
   },
+  //Retorna os componentes da máquina do current user
+  component(){
+    return CurrentUserMachine.find({}).fetch();
+  },
 });
 
 //Método de On Render do template HOME que é chamado sempre quando o template é renderizado
@@ -26,12 +24,20 @@ Template.home.onRendered(function () {
   $(".container").addClass("animated fadeIn");
   //Mostra a loading bar
   $(".loading-holder").attr("style","opacity:1");
-
+  var user = getCurrentUser();
+  console.log(user);
+  $.ajax({
+    type:"GET",
+    url:urlServer + "/orders",
+    data:{email:user.email, api_key: user.api_key},
+    success: function(result){
+      console.log(result);
+    }
+  });
   //Recupera o container de configurações
   var configContainer=$(document).find(".config-container");
   //PerfectScrollbar callback
   configContainer.perfectScrollbar();
-
   //Se é a primeira vez que este formulário ele irá executar uma sequencia de animações
   if(firstopenHome){
     configContainer.hide();

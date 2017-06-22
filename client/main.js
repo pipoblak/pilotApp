@@ -3,6 +3,12 @@ import { ReactiveVar } from 'meteor/reactive-var';
 
 import './main.html';
 
+urlServer = "http://localhost:80";
+
+//Global get current user
+getCurrentUser= function(){
+    return CurrentUser.find().fetch()[0];
+}
 
 
 //LOGIN TEMPLATE
@@ -12,7 +18,7 @@ Template.login.events({
     $(".login-loading").fadeIn();
     $.ajax({
       type:"GET",
-      url:"http://localhost:80/login",
+      url: urlServer + "/login",
       data:{email: $("#email").val(),password: $("#password").val()},
       success:function(result){
         $(".login-holder").fadeIn();
@@ -20,7 +26,7 @@ Template.login.events({
         var toast = $(document).find(".toast");
         if(result.response=="ok"){
           CurrentUser.remove({});
-          CurrentUser.insert({email: $("#email").val(),password: $("#password").val(),apikey:result.apikey});
+          CurrentUser.insert({email: $("#email").val(),password: $("#password").val(),api_key:result.api_key});
           Router.go("/");
         }
         else if(result.response=="fail"){
