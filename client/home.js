@@ -24,16 +24,56 @@ Template.home.onRendered(function () {
   $(".container").addClass("animated fadeIn");
   //Mostra a loading bar
   $(".loading-holder").attr("style","opacity:1");
+  //recupera o usuário atual
   var user = getCurrentUser();
-  console.log(user);
+  //Array para guardar as Orders de Computadores
+  var arrayOrdersPc=[];
+  //Async request de orders do usuário
   $.ajax({
     type:"GET",
     url:urlServer + "/orders",
     data:{email:user.email, api_key: user.api_key},
     success: function(result){
-      console.log(result);
+      $(".loading-tip").html("Buscando Informações.");
+      //Tratando as orders para pegar só computadores
+      for(i=0; i< result.orders.length; i++){
+        //Se a order foi entregada  PRECISA DO VERIFICADOR PRA VER SE É UMA MAQUINA COM MODULO
+        if(result.orders[i].production_status_code==3){
+          //Verifica se  a order é um PC e adiciona ao arrayOrdersPc
+          $.ajax({
+            async: false,
+            type:"GET",
+            url:urlServer + "/product",
+            data:{product_id:result.orders[i].items[0].product_id, api_key: user.api_key},
+            success:function(result2){
+              if(result2.product.category_name == "Processador"){
+                arrayOrdersPc.push(result.orders[i]);
+              }
+            }
+          });
+        }
+      }
+      //Se há Computadores
+      if(arrayOrdersPc.length>=1){
+        for(i=0; i< arrayOrdersPc.length; i++){
+          $.ajax({
+            async: false,
+            type:"GET",
+            url:urlServer + "/pc_kit",
+            data:{order_id:arrayOrdersPc[i].id, api_key: user.api_key},
+            success:function(result2){
+              arrayOrdersPc[i].name = result2.response.kits[0].name;
+            }
+          });
+        }
+        console.log(arrayOrdersPc);
+      }
+      else{
+        $(".loading-holder").hide();
+      }
     }
   });
+
   //Recupera o container de configurações
   var configContainer=$(document).find(".config-container");
   //PerfectScrollbar callback
