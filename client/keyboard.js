@@ -1,6 +1,6 @@
+//Método onRender do Template de Keyboard
 Template.keyboard.onRendered(function(){
   var container =$(".container");
-  //firstopenInfos
   $(".key").hide();
   $("#volume-icon").hide();
   $(".range-slider-and-description-holder").hide();
@@ -17,18 +17,17 @@ Template.keyboard.onRendered(function(){
 });
 
 
-//EVENTS
+//Eventos do Template de Keyboard
 Template.keyboard.events({
+  //Evento que dispara ao mecher no volume
   'change .range-sound-input'(event,instance){
-    range=$(document).find(".range-sound-input")[0];
-    console.log(range.value);
-    if(range.value <=0){
+    if(event.target.value <=0){
       $("#volume-icon").attr('class','fa fa-volume-off');
     }
-    else if (range.value>0 && range.value<80){
+    else if (event.target.value >0 && event.target.value<80){
       $("#volume-icon").attr('class','fa fa-volume-down');
     }
-    else if (range.value>=80){
+    else if (event.target.value>=80){
       $("#volume-icon").attr('class','fa fa-volume-up');
     }
   },

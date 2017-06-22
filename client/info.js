@@ -1,8 +1,9 @@
-
-//INFOS ON RENDERED
+//Metódo on Render de INFOS
 Template.infos.onRendered(function () {
   var container =$(".container");
+  //Dando opacidade 1 para o container evitando falha de animações
   container.attr("style","opacity:1");
+  //Recuperando informações de cada elemento que irá ganhar uma animação de entrada
   var coolerInfo = $(document).find(".cooler-info");
   var temperatureCpu= $(document).find(".temperature-icon.cpu").closest(".temperature");
   var temperatureGpu= $(document).find(".temperature-icon.gpu").closest(".temperature");
@@ -26,22 +27,8 @@ Template.infos.onRendered(function () {
   });
   coolerInfo.addClass("animated bounceInDown");
   $(".container").addClass("animated fadeIn");
-  //firstopenInfos
-  $(".cooler-input").on("change",function(event){
-    if(this.value <=0){
-      $(this).parents("div").closest("#cooler").find(".pc-i-cooler").css("animation","0s infinite spin-cooler");
-      $(this).parents("div").closest("#cooler").find(".pc-i-cooler").css("animation-timing-function","linear");
-    }
-    else if(this.value >=0 && this.value < 80){
-      $(this).parents("div").closest("#cooler").find(".pc-i-cooler").css("animation","5s infinite spin-cooler");
-      $(this).parents("div").closest("#cooler").find(".pc-i-cooler").css("animation-timing-function","linear");
-    }
-    else if(this.value >=80){
-      $(this).parents("div").closest("#cooler").find(".pc-i-cooler").css("animation","1s infinite spin-cooler");
-      $(this).parents("div").closest("#cooler").find(".pc-i-cooler").css("animation-timing-function","linear");
-    }
-  })
-  //CHART TEMPERATURE
+
+  //Gerando e Configurando o Gráfico de Temperatura
   var ctx = document.getElementById("chart-temperature").getContext('2d');
   var myChart = new Chart(ctx, {
     type: 'line',
@@ -93,6 +80,26 @@ Template.infos.onRendered(function () {
       }
   });
 })
+//Eventos do template INFOS
+Template.infos.events({
+  //Evento que dispara quando meche no range de velocidade de cooler
+  'change .cooler-input'(event,instance){
+    if(event.target.value <=0){
+      $(event.target).parents("div").closest("#cooler").find(".pc-i-cooler").css("animation","0s infinite spin-cooler");
+      $(event.target).parents("div").closest("#cooler").find(".pc-i-cooler").css("animation-timing-function","linear");
+    }
+    else if(event.target.value >=0 && event.target.value < 80){
+      $(event.target).parents("div").closest("#cooler").find(".pc-i-cooler").css("animation","5s infinite spin-cooler");
+      $(event.target).parents("div").closest("#cooler").find(".pc-i-cooler").css("animation-timing-function","linear");
+    }
+    else if(event.target.value >=80){
+      $(event.target).parents("div").closest("#cooler").find(".pc-i-cooler").css("animation","1s infinite spin-cooler");
+      $(event.target).parents("div").closest("#cooler").find(".pc-i-cooler").css("animation-timing-function","linear");
+    }
+  },
+});
+
+//Gera um Gradiente conico
 genConicProgress = function (element,atual,to,color){
   var gradient = new ConicGradient({
     stops: element.css('color') +" " +to + "%, #24242e 0%" , // required

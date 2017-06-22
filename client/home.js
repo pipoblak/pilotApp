@@ -1,11 +1,13 @@
 var firstopenHome=true;
 
-//HOME ON RENDERED
+//Retorna os componentes da máquina do current user
 Template.home.component = function(){
   return CurrentUserMachine.find({}).fetch();
 }
 
+//Helpers do template HOME
 Template.home.helpers({
+  //Metodo pra poder fazer o zig zag de direção dos componentes da maquina no CSS
   getFlexDirection(index){
     if((index%2)==0){
       return "flex-end flex-just-end";
@@ -16,13 +18,21 @@ Template.home.helpers({
   },
 });
 
+//Método de On Render do template HOME que é chamado sempre quando o template é renderizado
 Template.home.onRendered(function () {
+  //Dando opacidade 1 para o container evitando falha de animações
   $(".container").attr("style","opacity:1");
+  //Animação de entrada do container
   $(".container").addClass("animated fadeIn");
+  //Mostra a loading bar
   $(".loading-holder").attr("style","opacity:1");
-  var configContainer=$(document).find(".config-container");
 
+  //Recupera o container de configurações
+  var configContainer=$(document).find(".config-container");
+  //PerfectScrollbar callback
   configContainer.perfectScrollbar();
+
+  //Se é a primeira vez que este formulário ele irá executar uma sequencia de animações
   if(firstopenHome){
     configContainer.hide();
     var machineTitle= $(document).find(".machine-title span");
@@ -43,7 +53,4 @@ Template.home.onRendered(function () {
     });
     firstopenHome=false;
   }
-  else{
-  }
-
 })
