@@ -26,53 +26,9 @@ Template.home.onRendered(function () {
   $(".loading-holder").attr("style","opacity:1");
   //recupera o usuário atual
   var user = getCurrentUser();
-  //Array para guardar as Orders de Computadores
-  var arrayOrdersPc=[];
+
   //Async request de orders do usuário
-  $.ajax({
-    type:"GET",
-    url:urlServer + "/orders",
-    data:{email:user.email, api_key: user.api_key},
-    success: function(result){
-      $(".loading-tip").html("Buscando Informações.");
-      //Tratando as orders para pegar só computadores
-      for(i=0; i< result.orders.length; i++){
-        //Se a order foi entregada  PRECISA DO VERIFICADOR PRA VER SE É UMA MAQUINA COM MODULO
-        if(result.orders[i].production_status_code==3){
-          //Verifica se  a order é um PC e adiciona ao arrayOrdersPc
-          $.ajax({
-            async: false,
-            type:"GET",
-            url:urlServer + "/product",
-            data:{product_id:result.orders[i].items[0].product_id, api_key: user.api_key},
-            success:function(result2){
-              if(result2.product.category_name == "Processador"){
-                arrayOrdersPc.push(result.orders[i]);
-              }
-            }
-          });
-        }
-      }
-      //Se há Computadores
-      if(arrayOrdersPc.length>=1){
-        for(i=0; i< arrayOrdersPc.length; i++){
-          $.ajax({
-            async: false,
-            type:"GET",
-            url:urlServer + "/pc_kit",
-            data:{order_id:arrayOrdersPc[i].id, api_key: user.api_key},
-            success:function(result2){
-              arrayOrdersPc[i].name = result2.response.kits[0].name;
-            }
-          });
-        }
-        console.log(arrayOrdersPc);
-      }
-      else{
-        $(".loading-holder").hide();
-      }
-    }
-  });
+  getOrdersForUser(user)
 
   //Recupera o container de configurações
   var configContainer=$(document).find(".config-container");
@@ -100,3 +56,77 @@ Template.home.onRendered(function () {
     firstopenHome=false;
   }
 })
+
+var arrayOrdersPc=[];
+var arrayOrdersApproved=[];
+//ASYNC REQUEST DE GET USERS
+function getOrdersForUser(user){
+  //Array para guardar as Orders de Computadores
+  $.ajax({
+    type:"GET",
+    url:urlServer + "/orders",
+    data:{email:user.email, api_key: user.api_key},
+    success: function(result){
+      $(".loading-tip").html("Buscando Informações.");
+      //Tratando as orders para pegar só computadores
+
+      for(i=0; i< result.orders.length; i++){
+        //Se a order foi entregada  PRECISA DO VERIFICADOR PRA VER SE É UMA MAQUINA COM MODULO
+        if(result.orders[i].production_status_code==3 || result.orders[i].production_status_code==2 ){
+          //Verifica se  a order é um PC e adiciona ao arrayOrdersPc
+          arrayOrdersApproved.push(result.orders[i]);
+        }
+      }
+      //ESSA VERIFICÃO VAI SER ALTERADA NA ATUALIZAÇÃO DA API
+      getProductByArray(user);
+    }
+  });
+  return arrayOrdersPc;
+}
+
+
+var contOrdersPc=0;
+//SERA ALTERADO APOS A ATUALZIAÇÃO DA API Já que irão adicionar o
+function getProductByArray(user){
+  if(contOrdersPc < arrayOrdersApproved.length){
+    $.ajax({
+      type:"GET",
+      url:urlServer + "/product",
+      data:{product_id:arrayOrdersApproved[contOrdersPc].items[0].product_id, api_key: user.api_key},
+      success:function(result2){
+        if(result2.product.category_name == "Processador"){
+          arrayOrdersPc.push(arrayOrdersApproved[contOrdersPc]);
+        }
+        contOrdersPc++;
+        getProductByArray(user,arrayOrdersApproved,arrayOrdersPc);
+      }
+    });
+  }
+  else{
+    cont=0;
+    setPcName(user);
+  }
+}
+
+var contPcName=0;
+//Coloca o nome do KIT nas orders
+function setPcName(user){
+  if(arrayOrdersPc.length>=1){
+    if(contPcName < arrayOrdersPc.length){
+      $.ajax({
+        type:"GET",
+        url:urlServer + "/pc_kit",
+        data:{order_id:arrayOrdersPc[contPcName].id, api_key: user.api_key},
+        success:function(result2){
+          arrayOrdersPc[contPcName].name = result2.response.kits[0].name + " Pedido: "+ arrayOrdersPc[contPcName].id;
+          contPcName++;
+          setPcName(user);
+        }
+      });
+    }
+    else{
+      console.log(arrayOrdersPc);
+      $(".loading-holder").hide();
+    }
+  }
+}
