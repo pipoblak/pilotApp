@@ -25,9 +25,21 @@ Template.login.events({
         $(".login-loading").fadeOut();
         var toast = $(document).find(".toast");
         if(result.response=="ok"){
-          CurrentUser.remove({});
-          CurrentUser.insert({email: $("#email").val(),password: $("#password").val(),api_key:result.api_key});
-          Router.go("/");
+          $(".login-loading").fadeIn();
+          $.ajax({
+            type:"GET",
+            url: urlServer + "/user_machine",
+            data:{email: $("#email").val(),api_key:result.api_key},
+            success:function(result){
+              CurrentUserMachine.remove({});
+              _.each(result.machines[0].components, function(doc) { 
+                CurrentUserMachine.insert(doc);
+              })
+
+              CurrentUser.remove({});
+              CurrentUser.insert({email: $("#email").val(),password: $("#password").val(),api_key:result.api_key});
+              Router.go("/");
+            }});
         }
         else if(result.response=="fail"){
           toast.html("<span> Email ou senha incorretos.</span>");
@@ -62,7 +74,7 @@ Template.appbar.onRendered(function(){
 });
 Template.appbar.events({
   'click .close-modal' (event, instance){
-    $(".config-modal").slideUp(function(){
+    $(".config-modal").slideUp(200,function(){
       $(".config-modal-option").hide();
     });
   },

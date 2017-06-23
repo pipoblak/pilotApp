@@ -8,13 +8,13 @@
   </div>
   <div class="container" style="opacity:0">
     <div class="machine-title">
-      <span>galaxy</span>
+      <span>{{ machineTitle }}</span>
     </div>
     <div class="config-container">
       {{#each component}}
-        <div class="config-holder {{type}} {{ getFlexDirection @index }}">
-          <span>{{title}}</span><i class="pc-i-{{type}}"></i>
-        </div>
+          <div class="config-holder {{type}} {{ getFlexDirection @index }}">
+            <span>{{title}}</span><i class="pc-i-{{type}}"></i>
+          </div>
       {{/each}}
       <!-- <div class="config-holder cpu flex-end flex-just-end">
         <span>{{cpu}}</span><i class="pc-i-cpu"></i>

@@ -68,6 +68,7 @@ src: local('Bebas Neue'), url('assets/fonts/BebasNeue.woff') format('woff');
   display: flex;
   flex-direction: column;
   color: $white-purple;
+  text-align: center;
 }
 .loading-holder > span > i {
   margin: auto;
