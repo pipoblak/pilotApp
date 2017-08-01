@@ -3,7 +3,7 @@ import { ReactiveVar } from 'meteor/reactive-var';
 
 import './main.html';
 
-urlServer = "http://localhost:80";
+urlServer = "http://192.168.15.36:80";
 
 //Global get current user
 getCurrentUser= function(){
@@ -32,7 +32,7 @@ Template.login.events({
             data:{email: $("#email").val(),api_key:result.api_key},
             success:function(result){
               CurrentUserMachine.remove({});
-              _.each(result.machines[0].components, function(doc) { 
+              _.each(result.machines[0].components, function(doc) {
                 CurrentUserMachine.insert(doc);
               })
 
